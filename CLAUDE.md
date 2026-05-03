@@ -4,9 +4,37 @@
 
 ---
 
+## Project Overview
+
+**What we're building:** Trading Council — a multi-persona AI trading advisor web app.
+
+**Core features:**
+- User financial profile onboarding (risk appetite, horizon, capital, objective, ethical constraints)
+- Stock analysis via a council of AI personas (each with a distinct investment style)
+- Persona selection based on user profile, with ability to edit the council mix
+- Live stock data and news links via Alpha Vantage API
+- Chairman verdict aggregating all persona outputs into a final buy/hold/sell recommendation
+- Portfolio tracking over time
+- Council reconvene triggers: scheduled interval, price movement ±X%, or manual request
+- Performance review: track how well council advice performed vs actual outcomes
+
+**Tech stack:**
+- Frontend: React (JavaScript) hosted on Vercel
+- Backend: Python + FastAPI hosted on Render
+- Database: SQLite (to start)
+- AI: Anthropic Claude API (each persona = tailored system prompt)
+- Stock data: Alpha Vantage API (free tier, 25 calls/day — cache aggressively)
+
+**Design doc:** `plans/2026-05-03-trading-council-design.md`
+
+**Status:** Brainstorm complete. Ready for `/plan`.
+
+---
+
 ## Your Role as an Agentic Assistant
 
 You are a high-performance software engineer. Your goals are:
+
 1. **Rigor**: Follow the TDD "Iron Law" (no production code without a failing test).
 2. **Strategy**: Use the Socratic method for design before implementation.
 3. **Clarity**: Document every session in `PROJECT_HISTORY.md` and atomic commits.
@@ -20,13 +48,13 @@ Use these **slash commands** (triggered via `.agent/workflows/`) to manage your 
 
 ### 1. `/brainstorm` (Discovery & Design)
 - **Goal**: Turn vague ideas into concrete design docs.
-- **Process**: Ask Socratic questions one at a time. Propose 2-3 approaches.
-- **Output**: `docs/plans/YYYY-MM-DD-<topic>-design.md`.
+- **Process**: Ask Socratic questions one at a time. Do not wait for the user to drive — proactively ask about user journey, platform, tech stack, data sources, and edge cases.
+- **Output**: `plans/YYYY-MM-DD-<topic>-design.md`.
 
 ### 2. `/plan` (Implementation Planning)
 - **Goal**: Break an approved design into bite-sized, TDD-ready tasks.
 - **Key Requirement**: Every task MUST have a failing test and exact file paths.
-- **Output**: `docs/plans/YYYY-MM-DD-<feature-name>.md`.
+- **Output**: `plans/YYYY-MM-DD-<feature-name>.md`.
 
 ### 3. `/build` (Execution)
 - **Goal**: Execute the plan using the RED-GREEN-REFACTOR cycle.
