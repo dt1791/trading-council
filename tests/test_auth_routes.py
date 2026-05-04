@@ -5,6 +5,13 @@ os.environ["DB_PATH"] = "test_routes.db"
 
 client = TestClient(app)
 
+import os
+import sqlite3
+
+def setup_module():
+    if os.path.exists("test_routes.db"):
+        os.remove("test_routes.db")
+
 def test_register_endpoint():
     response = client.post("/auth/register", json={
         "email": "routetest@example.com",
