@@ -57,6 +57,30 @@ Work through these areas systematically. Ask one question, wait for the answer, 
 - What happens after the main action — does the app remember anything?
 - Is this a one-time tool or does it track things over time?
 
+**First visit vs returning user:**
+- What does a brand new user see on their very first visit?
+- What do they need to set up before they can use the app?
+- What does a returning user see when they come back?
+- Are there any screens or steps that only appear once vs every time?
+
+**Every screen the user sees:**
+- List every screen or page in the app — what is on each one?
+- What does the user do on each screen?
+- What does each output actually contain — be specific, not general?
+- How does the user get from one screen to the next?
+
+**Data the user manages:**
+- What information does the user provide once and save?
+- What information does the user update regularly?
+- Can the user upload files? What format? What happens after upload?
+- What does the user see to confirm their data is correct before saving?
+
+**Outputs and results:**
+- What exactly does each result show? Walk through every field.
+- Are there numbers? What are they based on? How are they calculated?
+- Are there labels or categories? What do they mean in plain English?
+- What can the user do after seeing a result?
+
 **Scope:**
 - What's in v1 vs what can wait?
 - What are you NOT building?
@@ -66,7 +90,7 @@ Work through these areas systematically. Ask one question, wait for the answer, 
 - Do you have a preferred tech stack, or shall I recommend one?
 - Any constraints — must be free, must be open source, must work offline?
 
-**Data:**
+**Data sources:**
 - Where does data come from — user input, external APIs, files?
 - Does the app need to store data between sessions?
 - Are there any sensitive data concerns?
@@ -130,11 +154,13 @@ Once confirmed, write the design document to:
 The design doc must include:
 - Goal
 - Problem statement
-- User journey (step by step)
+- User journey (step by step, every screen)
+- First visit vs returning user flow
 - Scope (what we are NOT building)
 - Architecture
 - Tech stack (with reasons)
 - Data model
+- Every output field with its source and calculation
 - Error handling and edge cases
 - Open questions (resolved and unresolved)
 - Next steps
@@ -161,6 +187,9 @@ This log is read by `/plan` at the start of every planning session to prevent re
 
 ## Output Checklist
 - [ ] Design doc written to `plans/YYYY-MM-DD-<topic>-design.md`
+- [ ] Every screen documented with its exact contents
+- [ ] First visit vs returning user flow documented
+- [ ] Every output field documented with source and calculation
 - [ ] `CLAUDE.md` updated with project overview and tech stack
 - [ ] `PROJECT_HISTORY.md` updated with session log entry
 - [ ] `.agent/decisions.log` updated with key decisions
@@ -175,6 +204,8 @@ This log is read by `/plan` at the start of every planning session to prevent re
 - The design doc could be handed to a developer who has never spoken to the user and they'd know exactly what to build
 - No placeholders remain in any output files
 - Every significant decision is logged with its reasoning so it is never re-litigated
+- Every screen is documented — a designer could build wireframes from the doc alone
+- Every output field is specified — a developer would never have to guess what to show
 
 ---
 
