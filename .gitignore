@@ -2,3 +2,5 @@
 .private-journal/
 .claude/
 .env
+.env.txt
+*.env
