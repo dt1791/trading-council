@@ -14,7 +14,7 @@
 
 [2026-05-03] [Brainstorm] — Decision: React frontend + Python FastAPI backend + SQLite database. Rejected: Full-stack Next.js, Django, PostgreSQL. Because: Beginner-friendly stack, free to run, React has largest community, FastAPI is simple and readable, SQLite requires zero setup for experimentation phase.
 
-[2026-05-03] [Brainstorm] — Decision: OpenRouter API with `openrouter/free` router powers all personas via tailored system prompts. Rejected: Anthropic API direct (requires paid credits), different models per persona (unnecessary complexity for v1). Because: OpenRouter free tier costs nothing, no credit card required, automatic fallback between free models if one is rate limited. Same system prompt approach works across all models. Upgrade to specific model (e.g. DeepSeek R1) when going to production.
+[2026-05-03] [Brainstorm] — Decision: OpenRouter API with `openrouter/auto` model powers all personas via tailored system prompts. Rejected: Anthropic API direct (requires paid credits), different models per persona (unnecessary complexity for v1). Because: OpenRouter free tier costs nothing, no credit card required, automatic fallback between free models if one is rate limited.
 
 [2026-05-03] [Brainstorm] — Decision: Multi-user from the start with email/password auth. Rejected: Single-user personal tool with no auth. Because: App is intended for others to use during experimentation phase; building auth later is more disruptive than building it first.
 
@@ -27,3 +27,25 @@
 [2026-05-03] [Brainstorm] — Decision: Onboarding wizard shown to new users only (first visit). Rejected: Profile questions asked every time before analysis. Because: Asking the same questions repeatedly is friction; profile should be saved and reused, editable in settings.
 
 [2026-05-03] [Plan] — Decision: Build order is Setup → Auth → Onboarding → Stock Data → Persona Engine → Council API → Main UI → Portfolio Tracking → Deployment. Rejected: UI first approach. Because: Backend and data layer must exist before UI can be wired up; auth must be in place before any user data is stored.
+
+[2026-05-04] [UX] — Decision: Council suggestion screen shown every time before analysis runs. Rejected: Show only on first analysis. Because: Different stocks may warrant different council mixes; showing it every time gives flexibility without being a barrier.
+
+[2026-05-04] [UX] — Decision: Onboarding questions asked once only, saved to user profile. Rejected: Ask before every analysis. Because: Profile defines who the user is as an investor — this doesn't change per stock. Council suggestion screen handles per-stock customisation.
+
+[2026-05-04] [UX] — Decision: Persona cards show style reference and investment lens. Rejected: Name only. Because: Users need to understand who each advisor is and what they look for to trust the recommendation.
+
+[2026-05-04] [UX] — Decision: Onboarding explains what each answer means before moving to next question. Rejected: Silent progression. Because: Many users won't know what "balanced risk appetite" means — explaining builds confidence and trust.
+
+[2026-05-04] [UX] — Decision: Profile summary screen shown at end of onboarding explaining what the answers mean for their council. Rejected: Go straight to dashboard. Because: Users should understand why their council looks the way it does before they start using it.
+
+[2026-05-04] [UX] — Decision: Chairman generates a proper rationale paragraph via AI, not just a weighted signal summary. Rejected: Rule-based summary only. Because: A human chairman would explain their reasoning — the AI should too.
+
+[2026-05-04] [UX] — Decision: Position sizing quantified in £/$ amounts based on capital. Small=1-3%, Medium=3-7%, Large=7-15%. Rejected: Labels only (small/medium/large). Because: Abstract labels don't help users decide how much to actually invest.
+
+[2026-05-04] [UX] — Decision: Position sizing based on portfolio value if provided, else capital available. Add note if using capital available: "Assumes this is a new portfolio." Rejected: Always use capital available. Because: If user has an existing portfolio, position size should be relative to total exposure, not just available cash.
+
+[2026-05-04] [UX] — Decision: Portfolio entry supports manual input (table of positions) and PDF statement upload with confirmation screen. Rejected: Manual only, or skip portfolio entry. Because: PDF upload reduces friction for users with existing portfolios; confirmation screen ensures accuracy before saving.
+
+[2026-05-04] [UX] — Decision: Login screen redesigned full-width with branding and tagline "Your money. Your council. Why trust one opinion when you can have many?" Rejected: Minimal functional login only. Because: First impression matters — branding builds trust before the user even logs in.
+
+[2026-05-04] [UX] — Decision: Full-width layout replacing narrow container. Rejected: Keep narrow box. Because: Wide screens have significant unused real estate; full-width layout feels more like a professional financial tool.
