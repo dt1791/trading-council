@@ -2,6 +2,7 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from dotenv import load_dotenv
 from backend.routers.auth import router as auth_router
+from backend.routers.stocks import router as stocks_router
 
 load_dotenv()
 
@@ -16,6 +17,7 @@ app.add_middleware(
 )
 
 app.include_router(auth_router)
+app.include_router(stocks_router)
 
 @app.get("/health")
 def health():
