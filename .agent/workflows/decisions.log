@@ -1,0 +1,29 @@
+[2026-05-03] [Brainstorm] — Decision: Multi-persona council model with mandatory + conditional personas. Rejected: Single AI advisor with one perspective. Because: Single viewpoint creates bias blind spots; a council of diverse analytic styles protects against this.
+
+[2026-05-03] [Brainstorm] — Decision: Two mandatory personas (Risk Manager, Quant/Systematic) always run for every user. Rejected: All personas always run. Because: Too many voices creates noise and conflicting signals; mandatory personas ensure baseline risk and data discipline on every analysis.
+
+[2026-05-03] [Brainstorm] — Decision: Conditional personas selected based on user investment objective (growth/income/safety). Rejected: User manually picks all personas from scratch. Because: Most users don't know which personas suit their profile; app should suggest based on their answers and let them edit.
+
+[2026-05-03] [Brainstorm] — Decision: Alpha Vantage API for stock data. Rejected: Yahoo Finance (unofficial, breaks randomly), Polygon.io (free tier limited to previous-day data only). Because: Alpha Vantage is official, documented, reliable, returns clean JSON, and free tier covers experimentation needs.
+
+[2026-05-03] [Brainstorm] — Decision: News shown as links only; persona summaries reference news where relevant. Rejected: Claude summarises all news articles in full. Because: Links are more reliable and avoid copyright issues; persona analysis already contextualises the news.
+
+[2026-05-03] [Brainstorm] — Decision: Three reconvene triggers — scheduled interval, price movement ±X%, manual request. Rejected: Only manual reconvene. Because: Automated triggers ensure the council monitors positions without requiring the user to remember to check.
+
+[2026-05-03] [Brainstorm] — Decision: Council remembers previous verdict when reconvening and checks if user followed advice. Rejected: Fresh analysis with no memory. Because: Continuity is the core value — tracking advice vs outcome is what makes this a long-term advisor not a one-shot tool.
+
+[2026-05-03] [Brainstorm] — Decision: React frontend + Python FastAPI backend + SQLite database. Rejected: Full-stack Next.js, Django, PostgreSQL. Because: Beginner-friendly stack, free to run, React has largest community, FastAPI is simple and readable, SQLite requires zero setup for experimentation phase.
+
+[2026-05-03] [Brainstorm] — Decision: OpenRouter API with `openrouter/free` router powers all personas via tailored system prompts. Rejected: Anthropic API direct (requires paid credits), different models per persona (unnecessary complexity for v1). Because: OpenRouter free tier costs nothing, no credit card required, automatic fallback between free models if one is rate limited. Same system prompt approach works across all models. Upgrade to specific model (e.g. DeepSeek R1) when going to production.
+
+[2026-05-03] [Brainstorm] — Decision: Multi-user from the start with email/password auth. Rejected: Single-user personal tool with no auth. Because: App is intended for others to use during experimentation phase; building auth later is more disruptive than building it first.
+
+[2026-05-03] [Brainstorm] — Decision: Free during experimentation phase, no payment/subscription. Rejected: Paid from day one. Because: Focus is on validating the concept and getting feedback before monetising.
+
+[2026-05-03] [Brainstorm] — Decision: SQLite for v1 database. Rejected: PostgreSQL from the start. Because: SQLite requires zero setup, is free, file-based, and easy to migrate later when user base grows.
+
+[2026-05-03] [Brainstorm] — Decision: Cache Alpha Vantage results for 15 minutes. Rejected: No caching, live calls every time. Because: Free tier is limited to 25 calls/day; caching is essential to avoid hitting the limit with multiple users.
+
+[2026-05-03] [Brainstorm] — Decision: Onboarding wizard shown to new users only (first visit). Rejected: Profile questions asked every time before analysis. Because: Asking the same questions repeatedly is friction; profile should be saved and reused, editable in settings.
+
+[2026-05-03] [Plan] — Decision: Build order is Setup → Auth → Onboarding → Stock Data → Persona Engine → Council API → Main UI → Portfolio Tracking → Deployment. Rejected: UI first approach. Because: Backend and data layer must exist before UI can be wired up; auth must be in place before any user data is stored.
