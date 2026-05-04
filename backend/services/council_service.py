@@ -2,6 +2,7 @@ import os
 import json
 import httpx
 from backend.services.personas import select_personas
+import re
 
 OPENROUTER_API_KEY = os.getenv("OPENROUTER_API_KEY")
 OPENROUTER_URL = "https://openrouter.ai/api/v1/chat/completions"
@@ -49,7 +50,17 @@ def run_persona_analysis(persona: dict, stock: dict) -> dict:
         )
         
         content = response.json()["choices"][0]["message"]["content"]
-        result = json.loads(content)
+        
+        # Strip markdown code blocks if present
+        content = re.sub(r'```json\s*', '', content)
+        content = re.sub(r'```\s*', '', content)
+        content = content.strip()
+
+        # Extract JSON
+        json_match = re.search(r'\{.*\}', content, re.DOTALL)
+        if not json_match:
+            raise ValueError("No JSON found in response")
+        result = json.loads(json_match.group())
         
         return {
             "personaId": persona["id"],
