@@ -206,6 +206,7 @@ This log is read by `/plan` at the start of every planning session to prevent re
 - Every significant decision is logged with its reasoning so it is never re-litigated
 - Every screen is documented — a designer could build wireframes from the doc alone
 - Every output field is specified — a developer would never have to guess what to show
+<<<<<<< HEAD
 
 ---
 
@@ -221,6 +222,8 @@ UX decisions that were missed in brainstorm and only surfaced after v1 was built
 - Branded login screen
 
 **These are now covered by the "Every screen", "Outputs and results", and "Data the user manages" question sections above.**
+=======
+>>>>>>> 4b51b8eb84da32376b64d596ec9f811faa523dfe
 
 ---
 
