@@ -22,7 +22,7 @@ export default function Register() {
   return (
     <div style={styles.container}>
       <div style={styles.card}>
-        <h1 style={styles.title}>Trading Council</h1>
+        <h1 style={styles.title}>Sage</h1>
         <p style={styles.subtitle}>Create your account</p>
         {error && <p style={styles.error}>{error}</p>}
         <input

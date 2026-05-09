@@ -65,6 +65,48 @@ def init_db():
             created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
             FOREIGN KEY (position_id) REFERENCES positions(id)
         );
+
+        CREATE TABLE IF NOT EXISTS portfolio_positions (
+            id TEXT PRIMARY KEY,
+            user_id TEXT NOT NULL,
+            ticker TEXT NOT NULL,
+            shares REAL NOT NULL,
+            entry_price REAL NOT NULL,
+            entry_date DATETIME DEFAULT CURRENT_TIMESTAMP,
+            current_price REAL DEFAULT 0,
+            current_value REAL DEFAULT 0,
+            sector TEXT DEFAULT 'Unknown',
+            status TEXT DEFAULT 'open',
+            source TEXT DEFAULT 'manual',
+            verdict_id TEXT,
+            FOREIGN KEY (user_id) REFERENCES users(id),
+            FOREIGN KEY (verdict_id) REFERENCES council_verdicts(id)
+        );
+
+        CREATE TABLE IF NOT EXISTS verdict_followups (
+            id TEXT PRIMARY KEY,
+            verdict_id TEXT NOT NULL,
+            user_id TEXT NOT NULL,
+            ticker TEXT NOT NULL,
+            acted_on TEXT NOT NULL,
+            shares_bought REAL DEFAULT 0,
+            amount_invested REAL DEFAULT 0,
+            entry_price REAL DEFAULT 0,
+            followup_date DATETIME DEFAULT CURRENT_TIMESTAMP,
+            FOREIGN KEY (verdict_id) REFERENCES council_verdicts(id),
+            FOREIGN KEY (user_id) REFERENCES users(id)
+        );
+
+        CREATE TABLE IF NOT EXISTS portfolio_snapshots (
+            id TEXT PRIMARY KEY,
+            user_id TEXT NOT NULL,
+            total_value REAL DEFAULT 0,
+            cash_available REAL DEFAULT 0,
+            cash_override REAL DEFAULT NULL,
+            sector_breakdown TEXT DEFAULT '{}',
+            snapshot_date DATETIME DEFAULT CURRENT_TIMESTAMP,
+            FOREIGN KEY (user_id) REFERENCES users(id)
+        );
     """)
 
     conn.commit()
